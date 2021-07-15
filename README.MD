@@ -1,6 +1,6 @@
 **Install docker.**
 
-Extract zip and copy folder to c drive.
+**Extract zip and copy folder to c drive.**
 
 open powershell or commmand prompt and switch to project folder
 
