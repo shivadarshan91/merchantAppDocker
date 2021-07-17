@@ -93,7 +93,12 @@ function Transactions() {
     },
     { title: "First name", field: "first_name", readonly: true },
     { title: "Last name", field: "last_name", readonly: true },
-    { title: "Amount", type: "numeric", field: "amount" },
+    {
+      title: "Amount",
+      type: "numeric",
+      field: "amount",
+      render: (rowData) => rowData.amount.toLocaleString(),
+    },
     { title: "Transaction Type", field: "transaction_type", readonly: true },
     {
       title: "Created Date",

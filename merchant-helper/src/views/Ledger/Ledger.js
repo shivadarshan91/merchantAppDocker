@@ -32,7 +32,7 @@ import CardHeader from "components/Card/CardHeader.js";
 import CardBody from "components/Card/CardBody.js";
 import CardFooter from "components/Card/CardFooter.js";
 import { makeStyles } from "@material-ui/core/styles";
-import { number } from "prop-types";
+import { Typography } from "@material-ui/core";
 
 const tableIcons = {
   Add: forwardRef((props, ref) => <AddBox {...props} ref={ref} />),
@@ -83,12 +83,22 @@ function Ledger() {
     },
     { title: "First name", field: "_id.first_name" },
     { title: "Last name", field: "_id.last_name" },
-    { title: "Credit", field: "credit" },
-    { title: "Debit", field: "debit" },
+    {
+      title: "Credit",
+      type: "numeric",
+      field: "credit",
+      render: (rowData) => rowData.credit.toLocaleString(),
+    },
+    {
+      title: "Debit",
+      type: "numeric",
+      field: "debit",
+      render: (rowData) => rowData.debit.toLocaleString(),
+    },
     {
       title: "Balance",
       type: "numeric",
-      render: (rowData) => rowData.credit - rowData.debit,
+      render: (rowData) => (rowData.credit - rowData.debit).toLocaleString(),
     },
   ];
   const [data, setData] = useState([]);
@@ -204,7 +214,26 @@ function Ledger() {
                   </Grid>
                 </Grid>
               </CardBody>
-              <CardFooter></CardFooter>
+              <CardFooter>
+                <Grid container spacing={1}>
+                  <Grid item xs={2}></Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      Total Credit: <b>{(100000).toLocaleString()}</b>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      Total Debit: <b>{(100000).toLocaleString()}</b>
+                    </Typography>
+                  </Grid>
+                  <Grid item xs={3}>
+                    <Typography variant="subtitle1" gutterBottom>
+                      Total Balance: <b>{(100000).toLocaleString()}</b>
+                    </Typography>
+                  </Grid>
+                </Grid>
+              </CardFooter>
             </Card>
           </GridItem>
         </GridContainer>
